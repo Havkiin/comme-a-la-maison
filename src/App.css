@@ -1,0 +1,225 @@
+:root {
+  --bg-color: #ffffff;
+  --image-transition-duration: 0.2s;
+  --arrow-animation-duration: 0.15s;
+
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  margin: 0;
+}
+
+.App {
+  background-color: var(--bg-color);
+  height: 100vh;
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.Carrousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+  height: 50%;
+}
+
+@media (orientation: portrait) {
+  .Carrousel {
+    width: 100%;
+    height: 70%;
+  }
+}
+
+.Carrousel > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+@media (orientation: portrait) {
+  .Carrousel > div {
+    flex-direction: column;
+  }
+}
+
+.CarrouselImage {
+  width: 80%;
+  max-height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (orientation: portrait) {
+  .CarrouselImage {
+    height: 45%;
+  }
+}
+
+.CarrouselArrow {
+  font-size: 8em;
+  cursor: pointer;
+  width: 10%;
+  display: flex;
+}
+
+@media (orientation: portrait) {
+  .CarrouselArrow {
+    transform: rotate(90deg);
+    font-size: 15em;
+  }
+}
+
+.CarrouselImage img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.still {
+  transform: rotate(0);
+}
+
+.swaying {
+  animation: sway 0.5s ease 0s infinite;
+}
+
+@keyframes sway {
+  0% { transform: rotate(15deg); }
+  50% { transform: rotate(-15deg); }
+  100% { transform: rotate(15deg); }
+}
+
+.clickNext {
+  animation: moveRightArrow var(--arrow-animation-duration) ease 0s 1 alternate;
+}
+
+.clickPrev {
+  animation: moveLeftArrow var(--arrow-animation-duration) ease 0s 1 alternate;
+}
+
+@media (orientation: portrait) {
+  .clickNext {
+    animation: moveDownArrow var(--arrow-animation-duration) ease 0s 1 alternate;
+  }
+  
+  .clickPrev {
+    animation: moveUpArrow var(--arrow-animation-duration) ease 0s 1 alternate;
+  }
+}
+
+@keyframes moveLeftArrow {
+  from {transform: translateX(0); }
+  to { transform: translateX(-2rem); }
+}
+
+@keyframes moveRightArrow {
+  from { transform: translateX(0); }
+  to { transform: translateX(2rem); }
+}
+
+@keyframes moveUpArrow {
+  from { transform: translateY(0) rotate(90deg); }
+  to { transform: translateY(-2rem) rotate(90deg); }
+}
+
+@keyframes moveDownArrow {
+  from { transform: translateY(0) rotate(90deg); }
+  to { transform: translateY(2rem) rotate(90deg); }
+}
+
+.transitionNextOut {
+  animation: moveLeftImg var(--image-transition-duration) ease 0s 1 normal forwards;
+}
+
+.transitionNextIn {
+  animation: moveRightImg var(--image-transition-duration) ease 0s 1 reverse forwards;
+}
+
+.transitionPrevOut {
+  animation: moveRightImg var(--image-transition-duration) ease 0s 1 normal forwards;
+}
+
+.transitionPrevIn {
+  animation: moveLeftImg var(--image-transition-duration) ease 0s 1 reverse forwards;
+}
+
+@media (orientation: portrait) {
+  .transitionNextOut {
+    animation: moveUpImg var(--image-transition-duration) ease 0s 1 normal forwards;
+  }
+
+  .transitionNextIn {
+    animation: moveDownImg var(--image-transition-duration) ease 0s 1 reverse forwards;
+  }
+  
+  .transitionPrevOut {
+    animation: moveDownImg var(--image-transition-duration) ease 0s 1 normal forwards;
+  }
+
+  .transitionPrevIn {
+    animation: moveUpImg var(--image-transition-duration) ease 0s 1 reverse forwards;
+  }
+}
+
+@keyframes moveLeftImg {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-5rem);
+    opacity: 0;
+  }
+}
+
+@keyframes moveRightImg {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(5rem);
+    opacity: 0;
+  }
+}
+
+@keyframes moveUpImg {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(5rem);
+    opacity: 0;
+  }
+}
+
+@keyframes moveDownImg {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-5rem);
+    opacity: 0;
+  }
+}
